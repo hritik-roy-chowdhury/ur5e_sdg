@@ -37,10 +37,6 @@ CUBES = [
     "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/4.5/Isaac/Props/Shapes/cube.usd"
 ]
 
-CONES = [
-    "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/4.5/Isaac/Props/Shapes/cone.usd"
-]
-
 CYLINDERS = [
     "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/4.5/Isaac/Props/Shapes/cylinder.usd"
 ]
@@ -98,15 +94,7 @@ def main():
             rep.modify.pose(rotation=rep.distribution.uniform((0, 0, 0), (45, 45, 180)),
                             scale=rep.distribution.uniform((0.03, 0.03, 0.03), (0.05, 0.05, 0.05)))
             rep.randomizer.scatter_2d(surface_prims=plane, check_for_collisions=False)
-            rep.randomizer.color(colors=rep.distribution.uniform((0.1, 0.1, 0.1), (1.0, 1.0, 1.0)))
-
-        with rep.randomizer.instantiate(paths=[CONES[0]], 
-                                        size=rep.distribution.uniform(0, 5),
-                                        semantics=[("class", "cone")]):
-            rep.modify.pose(rotation=rep.distribution.uniform((0, 0, 0), (45, 45, 180)),
-                            scale=rep.distribution.uniform((0.03, 0.03, 0.03), (0.05, 0.05, 0.05)))
-            rep.randomizer.scatter_2d(surface_prims=plane, check_for_collisions=False)
-            rep.randomizer.color(colors=rep.distribution.uniform((0.1, 0.1, 0.1), (1.0, 1.0, 1.0)))
+            rep.randomizer.color(colors=rep.distribution.uniform((0.6, 0.0, 0.6), (1.0, 0.3, 1.0)))
 
         with rep.randomizer.instantiate(paths=[CYLINDERS[0]], 
                                         size=rep.distribution.uniform(0, 5),
@@ -114,7 +102,8 @@ def main():
             rep.modify.pose(rotation=rep.distribution.uniform((0, 0, 0), (45, 45, 180)),
                             scale=rep.distribution.uniform((0.03, 0.03, 0.03), (0.05, 0.05, 0.05)))
             rep.randomizer.scatter_2d(surface_prims=plane, check_for_collisions=False)
-            rep.randomizer.color(colors=rep.distribution.uniform((0.1, 0.1, 0.1), (1.0, 1.0, 1.0)))
+            rep.randomizer.color(colors=rep.distribution.uniform((0.0, 0.0, 0.0), (0.3, 0.3, 0.3)))
+
 
     # Set up the writer
     writer = rep.WriterRegistry.get("KittiWriter")
