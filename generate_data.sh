@@ -14,6 +14,6 @@ cd $ISAAC_SIM_PATH
 
 echo "Starting Data Generation"  
 
-./python.sh $SCRIPT_PATH --height 480 --width 640 --num_frames 1000 --data_dir $OUTPUT_DATA
+./python.sh $SCRIPT_PATH --height 900 --width 1200 --num_frames 1000 --data_dir $OUTPUT_DATA
 
 
