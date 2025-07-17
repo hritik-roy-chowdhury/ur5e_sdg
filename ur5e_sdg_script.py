@@ -88,7 +88,7 @@ def main():
         # Randomize camera properties
         with cam:
             rep.modify.pose(
-                position=rep.distribution.uniform((0.97, -0.03, 1.82), (1.03, 0.03, 1.88)),
+                position=rep.distribution.uniform((1, 0, 1.85), (1, 0, 1.85)),
                 rotation=rep.distribution.uniform((0, -50, 0), (0, -50, 0))) # ZYX rotation where frames rotate with the sequence!
 
         # Randomize object properties
