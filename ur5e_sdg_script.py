@@ -75,6 +75,10 @@ def main():
 
     # trigger replicator pipeline
     with rep.trigger.on_frame(num_frames=CONFIG["num_frames"]):
+
+        # Randomize ground color
+        with rep.get.prims(path_pattern="GroundPlane"):
+            rep.randomizer.color(colors=rep.distribution.uniform(0.15, 0.5))
         
         # Randomize lighting
         with rep.get.prims(path_pattern="DomeLight"):
@@ -83,7 +87,7 @@ def main():
 
         # Randomize camera properties
         with cam:
-            rep.modify.pose(position=rep.distribution.uniform((0.97, -0.03, 1.77), (1.03, 0.03, 1.83)),
+            rep.modify.pose(position=rep.distribution.uniform((0.97, -0.03, 1.82), (1.03, 0.03, 1.88)),
                             rotation=rep.distribution.uniform((178, -127, 178), (182, -123, 182))) # ZYX rotation where frames rotate with the sequence!
 
         # Randomize object properties
