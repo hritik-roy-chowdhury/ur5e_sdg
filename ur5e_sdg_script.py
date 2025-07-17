@@ -71,7 +71,7 @@ def main():
         simulation_app.update()
 
     # Create camera with Replicator API for gathering data
-    cam = rep.create.camera(focal_length=1.93, focus_distance=0.6, horizontal_aperture=3.896, clipping_range=(0.1, 1000000))
+    cam = rep.create.camera(focal_length=1.93, focus_distance=0.8, horizontal_aperture=3.896, clipping_range=(0.1, 1000000))
 
     # trigger replicator pipeline
     with rep.trigger.on_frame(num_frames=CONFIG["num_frames"]):
@@ -87,8 +87,9 @@ def main():
 
         # Randomize camera properties
         with cam:
-            rep.modify.pose(position=rep.distribution.uniform((0.97, -0.03, 1.82), (1.03, 0.03, 1.88)),
-                            rotation=rep.distribution.uniform((178, -127, 178), (182, -123, 182))) # ZYX rotation where frames rotate with the sequence!
+            rep.modify.pose(
+                position=rep.distribution.uniform((0.97, -0.03, 1.82), (1.03, 0.03, 1.88)),
+                rotation=rep.distribution.uniform((0, -50, 0), (0, -50, 0))) # ZYX rotation where frames rotate with the sequence!
 
         # Randomize object properties
         plane = rep.create.plane(scale=(0.35, 0.5, 1), visible=False, position=(0.6, 0, 1.12))
