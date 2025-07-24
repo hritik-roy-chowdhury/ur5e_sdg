@@ -20,6 +20,7 @@ simulation_app = SimulationApp(launch_config=CONFIG)
 
 ## This is the path which has the background scene in which objects will be added.
 ENV_URL = os.path.join(os.path.dirname(__file__), "models/table_setup.usd")
+TRAY_URL = os.path.join(os.path.dirname(__file__), "models/tray.usd")
 
 import carb
 import omni
@@ -73,6 +74,12 @@ def main():
     # Create camera with Replicator API for gathering data
     cam = rep.create.camera(focal_length=1.93, focus_distance=0.8, horizontal_aperture=3.896, clipping_range=(0.1, 1000000))
 
+    # Create a tray
+    tray = rep.create.from_usd(TRAY_URL)
+
+    # Plane for scattering objects
+    plane = rep.create.plane(scale=(0.35, 0.5, 1), visible=False, position=(0.6, 0, 1.12))
+
     # trigger replicator pipeline
     with rep.trigger.on_frame(num_frames=CONFIG["num_frames"]):
 
@@ -88,11 +95,22 @@ def main():
         # Randomize camera properties
         with cam:
             rep.modify.pose(
-                position=rep.distribution.uniform((1, 0, 1.85), (1, 0, 1.85)),
-                rotation=rep.distribution.uniform((0, -50, 0), (0, -50, 0))) # ZYX rotation where frames rotate with the sequence!
+                position=rep.distribution.uniform((1, 0, 1.77), (1, 0, 1.83)),
+                rotation=rep.distribution.uniform((0, -52, 0), (0, -48, 0))) # ZYX rotation where frames rotate with the sequence!
+            
+        # Randomize tray and plane pose
+        random_position = rep.distribution.uniform((0.57, -0.03, 1.095), (0.63, 0.03, 1.095))
+        random_rotation = rep.distribution.uniform((0, 0, -2), (0, 0, 2))
+        with tray:
+            rep.modify.pose(
+                position=random_position,
+                rotation=random_rotation)
+        with plane:
+            rep.modify.pose(
+                position=random_position,
+                rotation=random_rotation)
 
         # Randomize object properties
-        plane = rep.create.plane(scale=(0.35, 0.5, 1), visible=False, position=(0.6, 0, 1.12))
         with rep.randomizer.instantiate(paths=[CUBES[0]], 
                                         size=rep.distribution.uniform(0, 5),
                                         semantics=[("class", "cube")]):
