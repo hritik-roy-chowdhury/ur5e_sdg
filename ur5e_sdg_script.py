@@ -115,7 +115,7 @@ def main():
                                         size=rep.distribution.uniform(0, 5),
                                         semantics=[("class", "cube")]):
             rep.modify.pose(rotation=rep.distribution.uniform((0, 0, 0), (45, 45, 180)),
-                            scale=rep.distribution.uniform((0.03, 0.03, 0.03), (0.05, 0.05, 0.05)))
+                            scale=rep.distribution.uniform((0.03, 0.03, 0.03), (0.06, 0.06, 0.06)))
             rep.randomizer.scatter_2d(surface_prims=plane, check_for_collisions=False)
             rep.randomizer.color(colors=rep.distribution.uniform((0.6, 0.0, 0.6), (1.0, 0.3, 1.0)))
 
@@ -123,7 +123,7 @@ def main():
                                         size=rep.distribution.uniform(0, 5),
                                         semantics=[("class", "cylinder")]):
             rep.modify.pose(rotation=rep.distribution.uniform((0, 0, 0), (45, 45, 180)),
-                            scale=rep.distribution.uniform((0.03, 0.03, 0.03), (0.05, 0.05, 0.05)))
+                            scale=rep.distribution.uniform((0.04, 0.04, 0.03), (0.06, 0.06, 0.06)))
             rep.randomizer.scatter_2d(surface_prims=plane, check_for_collisions=False)
             rep.randomizer.color(colors=rep.distribution.uniform((0.0, 0.0, 0.0), (0.3, 0.3, 0.3)))
 
